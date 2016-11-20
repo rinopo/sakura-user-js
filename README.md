@@ -4,7 +4,10 @@
 
 ## 動作環境
 
-動作確認は [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) / Google Chrome 最新バージョンで行ってます。
+動作確認は下記で行ってます：
+
+- [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) / Google Chrome 最新バージョン。
+- さくらのレンタルサーバ スタンダード／プレミアム／ビジネス／ビジネスプロ／マネージド。
 
 
 ## sakura-menu.user.js
