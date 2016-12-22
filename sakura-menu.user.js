@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         sakura control panel menu tweaks
 // @namespace    https://github.com/rinopo/sakura-user-js
-// @version      0.2.0
+// @version      0.3.0
 // @description  さくらのレンタルサーバのコントロールパネルのメニューでよく使う項目を目立たせる。
 // @author       rinopo
 // @match        https://secure.sakura.ad.jp/rscontrol/rs/*
@@ -12,9 +12,9 @@
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
 // @icon         https://secure.sakura.ad.jp/favicon.ico
 // ==/UserScript==
-
-(function() {
-    'use strict';
+$.noConflict();
+jQuery( document ).ready(function( $ ) {
+  'use strict';
 
   // 環境の判定
 	var pathname = window.location.pathname;
@@ -97,4 +97,4 @@
 	$style.append('.resource.tm-highlight a::before { content: "📈"; }');
 	$style.append('.errorlog.tm-highlight a::before { content: "😱"; }');
 
-})();
+});
