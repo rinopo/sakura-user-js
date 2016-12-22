@@ -1,32 +1,27 @@
 // ==UserScript==
 // @name         sakura control panel menu tweaks
 // @namespace    https://github.com/rinopo/sakura-user-js
-// @version      0.1
+// @version      0.2.0
 // @description  さくらのレンタルサーバのコントロールパネルのメニューでよく使う項目を目立たせる。
 // @author       rinopo
 // @match        https://secure.sakura.ad.jp/rscontrol/rs/*
 // @match        https://secure.sakura.ad.jp/rscontrol/main/*
 // @match        https://secure.sakura.ad.jp/rscontrol/ms/*
-// @exclude        https://secure.sakura.ad.jp/rscontrol/ms/monitoring
+// @exclude      https://secure.sakura.ad.jp/rscontrol/ms/monitoring
 // @grant        none
-// @require        https://code.jquery.com/jquery-3.1.1.min.js
-// @icon        https://secure.sakura.ad.jp/favicon.ico
+// @require      https://code.jquery.com/jquery-3.1.1.min.js
+// @icon         https://secure.sakura.ad.jp/favicon.ico
 // ==/UserScript==
 
 (function() {
     'use strict';
 
-	// style 要素を追加しておく。
-    $('head').append('<style id="tm-style" />');
-	var $style = $('#tm-style');
-
-
-	// よく使う項目の背景色をハイライト。
+  // 環境の判定
 	var pathname = window.location.pathname;
 
 	var path;
 	if (pathname.includes('/rs/')) {
-		// スタンダード、プレミアム
+		// メールボックス、スタンダード、プレミアム
 		path = 'rs';
 	} else if (pathname.includes('/main/')) {
 		// ビジネス、ビジネスプロ
@@ -36,16 +31,32 @@
 		path = 'ms';
 	}
 
+
+	// style 要素を追加しておく。
+  $('head').append('<style id="tm-style" />');
+	var $style = $('#tm-style');
+
+
+	// よく使う項目の背景色をハイライト。
 	if (path==='rs') {
-		$('.mail, .settings, .domain, .db, .phpini, .ml, .crontab, .resource').addClass('tm-highlight');
+		$('.mail, .domain, .db, .phpini, .ml, .crontab, .resource').addClass('tm-highlight');
 	} else if (path==='main' || path==='ms') {
-		$('.user, .settings, .domain, .db, .php, .ml, .crontab, .resource').addClass('tm-highlight');
+		$('.user, .domain, .db, .php, .ml, .crontab, .resource').addClass('tm-highlight');
 	}
 
 	$style.append('.tm-highlight { background-color: #c1ffe6 !important; }');
 
 
 	// よく使う下層の機能をメニューに追加
+	$('td.settings').parent().after('\
+		<tr>\
+		<td align="left" class="settingsservinfo tm-highlight">\
+		&nbsp;<img src="/rscontrol/images/icon_sq10x10.gif" width="10" height="10">\
+		<a href="https://secure.sakura.ad.jp/rscontrol/'+path+'/settingsservinfo">サーバに関する情報</a>\
+		</td>\
+		</tr>\
+	');
+
 	$('td.logging').parent().after('\
 		<tr>\
 		<td align="left" class="errorlog tm-highlight">\
@@ -75,8 +86,8 @@
 
 	$style.append('.mail.tm-highlight a::before { content: "✉️"; }');
 	$style.append('.user.tm-highlight a::before { content: "✉️"; }');
-	$style.append('.settings.tm-highlight a::before { content: "ℹ️"; }');
-	$style.append('.domain.tm-highlight a::before { content: "⭐️"; }');
+	$style.append('.settingsservinfo.tm-highlight a::before { content: "ℹ️"; }');
+	$style.append('.domain.tm-highlight a::before { content: "📛"; }');
 	$style.append('.domainadd.tm-highlight a::before { content: "🌟"; }');
 	$style.append('.db.tm-highlight a::before { content: "🗄"; }');
 	$style.append('.php.tm-highlight a::before { content: "🐘"; }');
