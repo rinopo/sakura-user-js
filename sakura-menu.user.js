@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         sakura control panel menu tweaks
 // @namespace    https://github.com/rinopo/sakura-user-js
-// @version      0.3.0
+// @version      0.3.1
 // @description  さくらのレンタルサーバのコントロールパネルのメニューでよく使う項目を目立たせる。
 // @author       rinopo
 // @match        https://secure.sakura.ad.jp/rscontrol/rs/*
@@ -93,7 +93,7 @@ jQuery( document ).ready(function( $ ) {
 	$style.append('.php.tm-highlight a::before { content: "🐘"; }');
 	$style.append('.phpini.tm-highlight a::before { content: "🐘"; }');
 	$style.append('.ml.tm-highlight a::before { content: "📨"; }');
-	$style.append('.crontab.tm-highlight a::before { content: "⏱"; }');
+	$style.append('.crontab.tm-highlight a::before { content: "⏱️"; }');
 	$style.append('.resource.tm-highlight a::before { content: "📈"; }');
 	$style.append('.errorlog.tm-highlight a::before { content: "😱"; }');
 
